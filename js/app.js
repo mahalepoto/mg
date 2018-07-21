@@ -20,9 +20,9 @@ window.onload = function () {
 		currentCard  = 	[];
 		previouseCard= null ;
 		moveCount = 0 ;
-		var relod = document.getElementsByClassName ('restart');
-		console.log (relod); 
-		relod[0].addEventListener ('click', function (){
+		var restart = document.getElementsByClassName ('restart');
+		console.log (restart); 
+		restart[0].addEventListener ('click', function (){
 			location.reload();
 
 		})
@@ -45,9 +45,14 @@ window.onload = function () {
 		displayCards[i].addEventListener('click', function () {
  		currentCard = this;
  		console.log (currentCard);
- 		//previouseCard = openedCards[0];
+
+ 		// updating move counts
+ 		let countMoves = document.getElementById ('moves');
  		moveCount++ ;
- 		if ( moveCount === 21) {
+ 		countMoves.innerHTML= moveCount;
+ 		console.log(countMoves);
+ 		//moveCount = countMoves;
+ 		if ( moveCount === 2) {
  			var removeStar = document.getElementById('star3');
 			removeStar.style.display = 'none';
  		}
@@ -63,10 +68,11 @@ window.onload = function () {
  				// resetting openedCards = [];
  				console.log ('match');
  				previouseCard = null ;
+
  				// check if won 
  				if (cards.length === matchedCards.length) {
  					//alert ('You have won the game') ;
- 					if (confirm("You have won the game \nDo you want to play again")) {
+ 					if (confirm("You have won the game \nDo you want to play again?")) {
     					txt = "You pressed OK!";
     					location.reload();
 					} else {
