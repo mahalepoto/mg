@@ -38,24 +38,51 @@ window.onload = function () {
 	
 	}
 
-	// Click Event
+	// Stop watch initialisation
+	let stopWatch = document.getElementById ('timer');
+		time = 0;
+		seconds=0
+	
+	// start time time
+	function startTime () {
+		time = setInterval ( function (){
+			seconds++;
+			stopWatch.innerHTML = seconds + ' s';
+		}, 1000); 
+	}
+
+	// stop the time
+	function stopTime ()	{
+		clearInterval (time);
+	}
+	
+
+	
 	let displayCards = document.getElementsByClassName ('card');       
 		console.log (displayCards);
+
+		// Click Event
 		for (i=0; i < displayCards.length; i++) {
 		displayCards[i].addEventListener('click', function () {
  		currentCard = this;
  		console.log (currentCard);
+
 
  		// updating move counts
  		let countMoves = document.getElementById ('moves');
  		moveCount++ ;
  		countMoves.innerHTML= moveCount;
  		console.log(countMoves);
+
  		//moveCount = countMoves;
- 		if ( moveCount === 2) {
+ 		if ( moveCount === 20) {
  			var removeStar = document.getElementById('star3');
 			removeStar.style.display = 'none';
  		}
+
+ 		// start  stop watch
+ 			startTime ();
+
  		currentCard.classList.add('open', 'show');
 
  		if (previouseCard) {
@@ -71,13 +98,23 @@ window.onload = function () {
 
  				// check if won 
  				if (cards.length === matchedCards.length) {
+ 					
+ 					
+
  					//alert ('You have won the game') ;
  					if (confirm("You have won the game \nDo you want to play again?")) {
     					txt = "You pressed OK!";
     					location.reload();
+
+    					// stopping stop watch 
+ 							 stopWatch();
+    					
+
 					} else {
     					txt = "You pressed Cancel!";
 					}
+					// resetting stop watch
+    					
  				}
  			
  			} else {
