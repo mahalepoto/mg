@@ -18,7 +18,7 @@ window.onload = function () {
 	let openedCards	 = 	[];
 		matchedCards = 	[];
 		currentCard  = 	[];
-		previouseCard= null ;
+		previouseCard= 0 ;
 		moveCount = 0 ;
 		var restart = document.getElementsByClassName ('restart');
 		console.log (restart); 
@@ -38,7 +38,7 @@ window.onload = function () {
 	
 	}
 
-	// Stop watch initialisation
+	// Stopwatch initialisation
 	let stopWatch = document.getElementById ('timer');
 		time = 0;
 		seconds=0
@@ -51,7 +51,7 @@ window.onload = function () {
 		}, 1000); 
 	}
 
-	// stop the time
+	// stop the time function
 	function stopTime ()	{
 		clearInterval (time);
 	}
@@ -61,71 +61,81 @@ window.onload = function () {
 	let displayCards = document.getElementsByClassName ('card');       
 		console.log (displayCards);
 
-		// Click Event
-		for (i=0; i < displayCards.length; i++) {
-		displayCards[i].addEventListener('click', function () {
+	// Click Event
+	function cardClick () {
  		currentCard = this;
+ 		currentCard.removeEventListener ('click', cardClick); 
  		console.log (currentCard);
-
 
  		// updating move counts
  		let countMoves = document.getElementById ('moves');
+
  		moveCount++ ;
  		countMoves.innerHTML= moveCount;
  		console.log(countMoves);
 
- 		//moveCount = countMoves;
+ 		// star ranking;
  		if ( moveCount === 20) {
  			var removeStar = document.getElementById('star3');
 			removeStar.style.display = 'none';
- 		}
+ 		} else if (moveCount ===30) {
+ 			var removeStarTwo = document.getElementById ('star2');
+ 			removeStarTwo.style.display = 'none';
+ 			}
 
- 		// start  stop watch
+ 		// start  stopwatch at the first click.
+ 		if ( moveCount ===1) {
  			startTime ();
+ 		}
 
  		currentCard.classList.add('open', 'show');
 
  		if (previouseCard) {
  			
- 			
+ 			// matching cards
  			if (currentCard.innerHTML === previouseCard.innerHTML) {
  				currentCard.classList.add('match');
  				previouseCard.classList.add('match');
  				matchedCards.push(currentCard,previouseCard);
- 				// resetting openedCards = [];
- 				console.log ('match');
+ 				
+ 				// console.log ('match'); this line here for just test purpose
  				previouseCard = null ;
 
  				// check if won 
  				if (cards.length === matchedCards.length) {
  					
- 					
+ 					// stopping stopwatch 
+ 						stopTime();
 
- 					//alert ('You have won the game') ;
- 					if (confirm("You have won the game \nDo you want to play again?")) {
+ 					// alert ('You have won the game') ;
+ 					let messageOne = 'Congratulations! You Have Won! \n'
+ 						messageOneCap = messageOne.toUpperCase().bold ();
+ 						messageTwo = 'You Did It In '+ moveCount+ ' moves'  + ' and ' + seconds+ ' seconds.';
+ 						messageThree = '\nPlay Again ?';
+ 					if (confirm(messageOneCap + messageTwo + messageThree )) {
     					txt = "You pressed OK!";
     					location.reload();
 
-    					// stopping stop watch 
- 							 stopWatch();
     					
 
-					} else {
-    					txt = "You pressed Cancel!";
-					}
-					// resetting stop watch
+					} 	else {
+    						txt = "You pressed Cancel!";
+						}
     					
  				}
  			
  			} else {
+ 				// when cards are not matched
  				setTimeout (function(){
  					currentCard.classList.remove ('open', 'show');	
  					previouseCard.classList.remove ('open', 'show');
+ 					currentCard.addEventListener ('click', cardClick);
+ 					previouseCard.addEventListener ('click', cardClick);
  					previouseCard = null ;
  				}, 500);
  				
  				
- 				//resetting openedCards = [];
+ 				
 
  			}
 
@@ -134,9 +144,12 @@ window.onload = function () {
  			openedCards.push(this);	
  		}
 
-
  		
- 	});
+ 	} 
+ 		
+ 		// event listener function 
+ 	for (i=0; i < displayCards.length; i++) {
+		displayCards[i].addEventListener('click', cardClick);
 
 	}
 
