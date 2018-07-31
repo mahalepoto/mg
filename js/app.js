@@ -158,14 +158,14 @@ window.onload = function () {
  	} 
  		
  		// event listener function 
- 	for (i=0; i < displayCards.length; i++) {
-		displayCards[i].addEventListener('click', cardClick);
+ 		for (i=0; i < displayCards.length; i++) {
+			displayCards[i].addEventListener('click', cardClick);
 
-	}
+		}
 	playAgainButton.addEventListener("click", ()=>{
-  winWindow.style.display = "none";
-  location.reload();
-});
+  		winWindow.style.display = "none";
+  		location.reload();
+	});
 
 	
  }
