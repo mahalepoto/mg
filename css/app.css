@@ -107,3 +107,58 @@
         float: right;
         cursor: pointer;
     }
+    
+    /*from maciejberka repo*/
+
+    .icon {
+  margin: auto;
+  visibility: hidden;
+}
+
+.unclickable {
+  pointer-events: none;
+}
+
+.win-window {
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+  position: absolute;
+  background-color: #fff;
+  flex-direction: column;
+  display: none;
+}
+
+.win-window h1 {
+  margin: auto auto 10px;
+  font-size: 4rem;
+}
+
+.win-window .stars-summary {
+  display: flex;
+  margin: 0 auto 10px;
+  font-size: 2.5rem;
+}
+
+.win-window p {
+  text-align: center;
+  font-size: 1.8rem;
+}
+
+.win-window .play-again-button {
+  width: 100px;
+  height: 30px;
+  border: none;
+  margin: 30px auto auto;
+  cursor: pointer;
+}
+
+.play-again-button:hover{
+  background-color: lightgreen;
+}
+
+.invisible {
+  visibility: hidden;
+}
+
+/*maciejberka repo ends*/

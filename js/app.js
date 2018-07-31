@@ -15,6 +15,13 @@ function shuffle(array) {
 
 
 window.onload = function () {
+	const winWindow = document.getElementsByClassName('win-window');
+	const secondStar = document.getElementsByClassName('second-star');
+	const thirdStar = document.getElementsByClassName('third-star');
+	const movesSummary = document.getElementsByClassName('moves-summary');
+	const timeSummary = document.getElementsByClassName('time-summary');
+	const playAgainButton = document.getElementsByClassName('play-again-button');
+
 	let openedCards	 = 	[];
 		matchedCards = 	[];
 		currentCard  = 	[];
@@ -106,21 +113,24 @@ window.onload = function () {
  					
  					// stopping stopwatch 
  						stopTime();
+ 						moveCount = movesSummary.textContent;
+ 						seconds = timeSummary.textContent;
+ 						winWindow.style.display = "flex";
 
  					// alert ('You have won the game') ;
- 					let messageOne = 'Congratulations! You Have Won! \n'
- 						messageOneCap = messageOne.toUpperCase().bold ();
- 						messageTwo = 'You Did It In '+ moveCount+ ' moves'  + ' and ' + seconds+ ' seconds.';
- 						messageThree = '\nPlay Again ?';
- 					if (confirm(messageOneCap + messageTwo + messageThree )) {
-    					txt = "You pressed OK!";
-    					location.reload();
+ 				// 	let messageOne = 'Congratulations! You Have Won! \n'
+ 				// 		messageOneCap = messageOne.toUpperCase().bold ();
+ 				// 		messageTwo = 'You Did It In '+ moveCount+ ' moves'  + ' and ' + seconds+ ' seconds.';
+ 				// 		messageThree = '\nPlay Again ?';
+ 				// 	if (confirm(messageOneCap + messageTwo + messageThree )) {
+    	// 				txt = "You pressed OK!";
+    	// 				location.reload();
 
     					
 
-					} 	else {
-    						txt = "You pressed Cancel!";
-						}
+					// } 	else {
+    	// 					txt = "You pressed Cancel!";
+					// 	}
     					
  				}
  			
@@ -152,6 +162,10 @@ window.onload = function () {
 		displayCards[i].addEventListener('click', cardClick);
 
 	}
+	playAgainButton.addEventListener("click", ()=>{
+  winWindow.style.display = "none";
+  location.reload();
+});
 
 	
  }
