@@ -81,16 +81,20 @@
                     </li>
                 </ul>
             </div>
-        <div class="win-window">
-        <h1>Congratulations!</h1>
-        <div class="stars-summary">
-          <span><i class="fas fa-star"></i></span>
-          <span class="second-star"><i class="fas fa-star"></i></span>
-          <span class="third-star"><i class="fas fa-star"></i></span>
-        </div>
-        <p>You did it in <span class="moves-summary"></span> moves and <span class="time-summary"></span> seconds!</p>
-        <button class="play-again-button">Play again</button>
-      </div>    
+        <div>
+            <!-- The Modal -->
+            <div id="myModal" class="modal">
+                <!-- Modal content -->
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <div id="middle">
+                        <h2>Congratulations!</h2> 
+                        <p id="p1"></p>
+                        <button id='playBt' onclick ='playAgain()'>Play Again</button>
+                    </div>
+                </div>
+            </div>
+        </div>    
 
             <script src="js/app.js"></script>
         </body>

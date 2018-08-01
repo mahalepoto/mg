@@ -20,7 +20,10 @@ window.onload = function () {
 		currentCard  = 	[];
 		previouseCard= 0 ;
 		moveCount = 0 ;
-		var restart = document.getElementsByClassName ('restart');
+	var restart = document.getElementsByClassName ('restart');
+		modal = document.getElementById('myModal');
+		span = document.getElementsByClassName('close')[0];
+
 		console.log (restart); 
 		restart[0].addEventListener ('click', function (){
 			location.reload();
@@ -37,6 +40,33 @@ window.onload = function () {
 		cardElements[i].className = shuffleCards[i]+ ' fa symbols';
 	
 	}
+
+	// initialising popup 
+
+	function popup() {
+    				modal.style.display = "flex";
+    				document.getElementById('p1').innerHTML = 'You did it in '+ moveCount+ ' moves'  + ' and ' + seconds+ ' seconds.';
+	}
+
+	//reload button initialisation
+		function playAgain() {
+    		location.reload();
+		}
+
+	// Closing popup by clicking x
+	span.onclick = function closeX () {
+    					modal.style.display = "none";
+					}
+
+	// function close popup by clicking any where
+	window.onclick = function(event) {
+    					if (event.target == modal) {
+        					modal.style.display = "none";
+    					}
+					}
+
+					
+
 
 	// Stopwatch initialisation
 	let stopWatch = document.getElementById ('timer');
@@ -107,20 +137,26 @@ window.onload = function () {
  					// stopping stopwatch 
  						stopTime();
 
+ 					// calling popup function 
+ 						popup ();
+					
+					// // Calling realod function 
+					// document.getElementById('playBt').onclick =  playAgain();
+
  					// alert ('You have won the game') ;
- 					let messageOne = 'Congratulations! You Have Won! \n'
- 						messageOneCap = messageOne.toUpperCase().bold ();
- 						messageTwo = 'You Did It In '+ moveCount+ ' moves'  + ' and ' + seconds+ ' seconds.';
- 						messageThree = '\nPlay Again ?';
- 					if (confirm(messageOneCap + messageTwo + messageThree )) {
-    					txt = "You pressed OK!";
-    					location.reload();
+ 				// 	let messageOne = 'Congratulations! You Have Won! \n'
+ 				// 		messageOneCap = messageOne.toUpperCase().bold ();
+ 				// 		messageTwo = 'You Did It In '+ moveCount+ ' moves'  + ' and ' + seconds+ ' seconds.';
+ 				// 		messageThree = '\nPlay Again ?';
+ 				// 	if (confirm(messageOneCap + messageTwo + messageThree )) {
+    	// 				txt = "You pressed OK!";
+    	// 				location.reload();
 
     					
 
-					} 	else {
-    						txt = "You pressed Cancel!";
-						}
+					// } 	else {
+    	// 					txt = "You pressed Cancel!";
+					// 	}
     					
  				}
  			
